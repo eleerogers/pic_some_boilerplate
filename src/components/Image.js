@@ -1,8 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
 import useHover from "../hooks/useHover"
+import { context } from "../Context"
 
 function Image({photo, className}) {
     const [hover, hoverRef] = useHover()
+    const { toggleFavorite, addToCart, removeFromCart, cart } = useContext(context)
+
+    function heartIcon() {
+        return photo.isFavorited
+            ? <i className="ri-heart-fill favorite" onClick={(e) => {toggleFavorite(photo.id)}}></i>
+            : hover && <i className="ri-heart-line favorite" onClick={(e) => {toggleFavorite(photo.id)}}></i>
+    }
+
+    function cartIcon() {
+        return cart.some(pic => pic.id === photo.id)
+            ? <i onClick={() => removeFromCart(photo)} className="ri-shopping-cart-fill cart"></i>
+            : hover && <i onClick={() => addToCart(photo)} className="ri-add-circle-line cart"></i>
+    }
 
     return (
         <div ref={hoverRef} className={`${className} image-container`}>
@@ -19,9 +33,9 @@ function Image({photo, className}) {
                 
                 // img needs src
             }
-            {hover && <i className="ri-heart-line favorite"></i>}
-            {hover && <i className="ri-add-circle-line cart"></i>}
             <img src={photo.url} className="image-grid" alt="" />
+            {heartIcon()}
+            {cartIcon()}
         </div>
     )
 }

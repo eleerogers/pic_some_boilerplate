@@ -1,23 +1,25 @@
-import React, {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect} from "react";
 
 function useHover() {
   const [hover, setHover] = useState(false);
   const hoverRef = useRef(null);
 
   useEffect(() => {
-    if (hoverRef && hoverRef.current) {
-      hoverRef.current.addEventListener('mouseover', () => {
+    const hoverRefCurr = hoverRef.current
+
+    if (hoverRef && hoverRefCurr) {
+      hoverRefCurr.addEventListener('mouseenter', () => {
         setHover(true);
       })
-      hoverRef.current.addEventListener('mouseout', () => {
+      hoverRefCurr.addEventListener('mouseleave', () => {
         setHover(false)
       })
     }
     return (() => {
-      hoverRef.current.removeEventListener('mouseover', () => {
+      hoverRefCurr.removeEventListener('mouseenter', () => {
         setHover(true);
       })
-      hoverRef.current.removeEventListener('mouseout', () => {
+      hoverRefCurr.removeEventListener('mouseleave', () => {
         setHover(false);
       })
     })

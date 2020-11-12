@@ -50,8 +50,15 @@ div.order-button > button:focus {
   outline: none;
 }
 
+div.order-button > button:hover {
+  outline: none;
+  background-color: #ACE6EC;
+}
+
 div.order-button > button:disabled {
   border-color: lightgray;
+  cursor: default;
+  background-color: inherit;
 }
 
 .cart-item {
