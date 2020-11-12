@@ -1,6 +1,6 @@
 import React from "react"
 
-function Image({className}) {
+function Image({photo, className}) {
     return (
         <div className={`${className} image-container`}>
             {
@@ -15,7 +15,7 @@ function Image({className}) {
                 
                 // img needs src
             }
-            <img className="image-grid" alt="" />
+            <img src={photo.url} className="image-grid" alt="" />
         </div>
     )
 }
