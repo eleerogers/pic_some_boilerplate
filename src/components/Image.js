@@ -1,9 +1,13 @@
 import React from "react"
+import useHover from "../hooks/useHover"
 
 function Image({photo, className}) {
+    const [hover, hoverRef] = useHover()
+
     return (
-        <div className={`${className} image-container`}>
+        <div ref={hoverRef} className={`${className} image-container`}>
             {
+                
                 //1. Icons to render for the heart:
                 //<i className="ri-heart-line favorite"></i>
                 //<i className="ri-heart-fill favorite"></i>
@@ -15,6 +19,8 @@ function Image({photo, className}) {
                 
                 // img needs src
             }
+            {hover && <i className="ri-heart-line favorite"></i>}
+            {hover && <i className="ri-add-circle-line cart"></i>}
             <img src={photo.url} className="image-grid" alt="" />
         </div>
     )

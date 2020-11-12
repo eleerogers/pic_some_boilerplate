@@ -8,7 +8,6 @@ function Photos() {
     return (
         <main className="photos">
             {photos.map((photo, index) => {
-                console.log(photo);
                 return <Image key={photo.id} photo={photo} className={getClass(index)}/>
             })}
         </main>
